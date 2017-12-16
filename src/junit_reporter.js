@@ -436,6 +436,7 @@
 
         function suiteAsXml(suite) {
             var xml = '\n <testsuite name="' + getFullyQualifiedSuiteName(suite) + '"';
+            xml += ' id="' + suite.id + '"';
             xml += ' timestamp="' + ISODateString(suite._startTime) + '"';
             xml += ' hostname="localhost"'; // many CI systems like Jenkins don't care about this, but junit spec says it is required
             xml += ' time="' + elapsed(suite._startTime, suite._endTime) + '"';
@@ -460,6 +461,7 @@
             var testName = self.useFullTestName ? spec.fullName : spec.description;
             
             var xml = '\n  <testcase classname="' + getFullyQualifiedSuiteName(spec._suite) + '"';
+            xml += ' id="' + spec.id + '"';
             xml += ' name="' + escapeInvalidXmlChars(testName) + '"';
             xml += ' time="' + elapsed(spec._startTime, spec._endTime) + '"';
 
